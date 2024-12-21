@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+            body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+        }
+        #main {
+            background-image: url("https://wallpapercave.com/wp/wp5134984.jpg");
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #inp {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #container {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            width: 90%;
+            max-width: 490px;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <input  id="inp" placeholder="Enter Any Movie Name">
+    <button onclick="movie()">Check</button>
+
+    <div id="container"></div>
+
+
+</div>
+
+
+
+    <script>
+
+        async function movie(){
+
+            inp=document.getElementById("inp").value 
+            let res=await fetch(`https://www.omdbapi.com/?t=${inp}&apikey=fb96640f`)
+            let data=await res.json()
+           
+    
+
+        document.getElementById("container").innerHTML=""
+
+
+
+        document.getElementById("container").innerHTML = `
+                    <h2>${data.Title} (${data.Year})</h2>
+                    <img src="${data.Poster}" alt="Poster of ${data.Title}">
+                    <p><strong>Runtime:</strong> ${data.Runtime}</p>
+                    <p><strong>Actors:</strong> ${data.Actors}</p>
+                    <p><strong>Director:</strong> ${data.Director}</p>
+                    <p><strong>Language:</strong> ${data.Language}</p>
+                    <p><strong>Country:</strong> ${data.Country}</p>
+                    <p><strong>IMDb Rating:</strong> ${data.imdbRating}</p>`
+
+       
+
+
+        }
+
+
+    </script>
+
+
+
+
+
+    
+</body>
+
+
+
+
+
+</html>
